@@ -1,18 +1,16 @@
-/*
+var numbersDigits = { zero: '0', one: '1', two: '2', three: '3', four: '4',
+                      five: '5', six: '6', seven: '7', eight: '8', nine: '9'};
 
+function wordToDigit(words) {
+  var result = words;
+  var numberRegex;
 
-*/
+  Object.keys(numbersDigits).forEach(function(word) {
+    numberRegex = '\\b' + word + '\\b';
+    result = result.replace(new RegExp(numberRegex, 'gi'), numbersDigits[word]);
+  })
 
-function wordToDigit(sentence) {
-  var numbersDigits = { zero: '0', one: '1', two: '2', three: '3', four: '4',
-                        five: '5', six: '6', seven: '7', eight: '8', nine: '9'};
-  var numberWordsRegex = /\bzero|one|two|three|four|five|six|seven|eight|nine\b/ig
-  var numberWords = sentence.match(numberWordsRegex);
-  var digits = numberWords.map(function(word) {
-    return numbersDigits[word.toLowerCase()];
-  });
-
-  return sentence.replace(numberWords.join(' '), digits.join(' '));
+  return result;
 }
 
-wordToDigit('zero one');
+wordToDigit('Please call me at five five five one two three four. Thanks.') === 'Please call me at 5 5 5 1 2 3 4. Thanks.'

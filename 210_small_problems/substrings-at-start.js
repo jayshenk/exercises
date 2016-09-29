@@ -1,11 +1,3 @@
-/*
-
-split string into an array of chars
-map the array of chars into
-  array.slice(0, index + 1).join('')
-
-*/
-
 function substringsAtStart(string) {
   var chars = string.split('');
   return chars.map(function(char, index) {
